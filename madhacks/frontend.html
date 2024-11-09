@@ -11,54 +11,65 @@
 </head>
 <body>
     <h1>Interaction with Java Backend</h1>
-    <div class = "column-profile">
-        <h2>Name</h2>
-        <h2>Badges</h2>
-        <h2>Heatmap</h2>
+    <a href="addTask.html">Add Task</a>
+    <div class="flex-container">
+        <div class = "column-profile">
+            <h2>Name</h2>
+            <h2>Badges</h2>
+            <h2>Heatmap</h2>
+            
+        </div>
         
+<!-- DELETE LATER and move to the second page -->
+        <div class="column-main">
+            <h2>Tasks</h2>
+    
+            <input id="new-task-title" class="form-control" style="max-width: 10em;"/>
+            <p id="title-error-text" style="color: red;"></p>
+    
+            <input id="new-task-description" class="form-control" style="max-width: 10em;"/>
+            <p id="description-error-text" style="color: red;"></p>
+    
+            <select id="new-task-category" class="form-select me-2" style="max-width: 12em;" aria-label="Task Category">
+                <option>Daily Task</option>
+                <option>Long-Term Goal</option>
+                <option>Helping Task</option>
+            </select>
+            <p id="category-error-text" style="color: red;"></p>
+    
+            <button id="add-btn" class="btn btn-secondary me-2" style="width: fit-content;" onclick="addTask()">Add Task</button>
+    
+        </div>
+
+<!-- <p id="tasks-public"></p> -->
+
+
+        <table>
+            <tr>
+                <td id="task-title">Task Title</td>
+            </tr>
+            <tr>
+                <td id="task-description">Task Description</td>
+            </tr>
+        </table>
     </div>
-    <div class="column-main">
-        <h2>Tasks</h2>
 
-        <input id="new-task-title" class="form-control" style="max-width: 10em;"/>
-        <p id="title-error-text" style="color: red;"></p>
-
-        <input id="new-task-description" class="form-control" style="max-width: 10em;"/>
-        <p id="description-error-text" style="color: red;"></p>
-
-        <select id="new-task-category" class="form-select me-2" style="max-width: 12em;" aria-label="Task Category">
-            <option>Daily Task</option>
-            <option>Long-Term Goal</option>
-            <option>Helping Task</option>
-        </select>
-        <p id="category-error-text" style="color: red;"></p>
-
-        <button id="add-btn" class="btn btn-secondary me-2" style="width: fit-content;" onclick="addTask()">Add Task</button>
-
-    </div>
-    <button onclick="fetchData()">Fetch Data</button>
-    <p id="data"></p>
+    
 
     <style>
-        .column-profile{
+        .body{
+        padding: 10px;
+        }
+ .column-profile{
             float: left;
             width: 30%;
             padding: 10px;
             background-color:antiquewhite;
         }
-        .column-main{
-            
-        }
+        table, th, td {
+  border: 1px solid black;
+}
     </style>
-    <script>
-        function fetchData() {
-            fetch('http://localhost:8080/test')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('data').textContent = data;
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    </script>
+    
 </body>
 </html>
