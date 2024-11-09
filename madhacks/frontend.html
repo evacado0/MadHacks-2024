@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend for Java Backend</title>
+</head>
+<body>
+    <h1>Interaction with Java Backend</h1>
+    <button onclick="fetchData()">Fetch Data</button>
+    <p id="data"></p>
+
+    <script>
+        function fetchData() {
+            fetch('http://localhost:8080/test')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('data').textContent = data;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
