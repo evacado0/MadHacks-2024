@@ -1,0 +1,13 @@
+.column-profile{
+    color:aqua;
+    float: left;
+  width: 50%;
+  padding: 10px;
+  background-color:antiquewhite;
+}
+
+body{
+    color:aqua;
+}
+
+.column-main{}
