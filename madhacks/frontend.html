@@ -32,6 +32,124 @@
             
         </div>
 
+     <!-- Task List -->
+<div class="column-main">
+    <h2>Your Task List</h2>
+
+    <!-- Dynamic Task List will be rendered here -->
+    <ul id="task-list">
+        <!-- Tasks will be added dynamically using JavaScript -->
+    </ul>
+
+    <h3>Completed Tasks</h3>
+    <ul id="completed-task-list">
+        <!-- Completed Tasks will be added dynamically using JavaScript -->
+    </ul>
+
+             <!-- Display user coins -->
+             <div id="user-coins">
+                <h3>Your Coins: <span id="coins">0</span></h3>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // Function to fetch app state from localStorage
+    function getAppState() {
+        return JSON.parse(localStorage.getItem("unnamed-app-data")) || { users: {}, currentUser: {} };
+    }
+
+    // Function to save app state to localStorage
+    function saveAppState(state) {
+        localStorage.setItem("unnamed-app-data", JSON.stringify(state));
+    }
+
+    // Function to display the user's tasks and coins
+    function displayUserTasks() {
+        const appState = getAppState();
+        const currentUser = appState.currentUser.username;
+        const taskListHtml = document.getElementById('task-list');
+        const completedTaskListHtml = document.getElementById('completed-task-list');
+        const coinsHtml = document.getElementById('coins');
+
+        if (currentUser && appState.users[currentUser]) {
+            const user = appState.users[currentUser];
+            const userTasks = user.tasks;
+            const completedTasks = user.completedTasks || [];
+            const coins = user.coins || 0;
+
+            // Clear the existing task lists
+            taskListHtml.innerHTML = '';
+            completedTaskListHtml.innerHTML = '';
+
+            // Display the coins
+            coinsHtml.textContent = coins;
+
+            // Iterate over the active tasks and add them to the active list
+            userTasks.forEach(task => {
+                const taskItem = document.createElement('li');
+                taskItem.classList.add('task');
+                taskItem.innerHTML = `
+                    <span class="task-title">${task.title} - ${task.description}</span>
+                    <button class="complete-btn" onclick="completeTask('${task.title}')">Complete</button>
+                `;
+                taskListHtml.appendChild(taskItem);
+            });
+
+            // Iterate over the completed tasks and add them to the completed list
+            completedTasks.forEach(task => {
+                const taskItem = document.createElement('li');
+                taskItem.classList.add('task');
+                taskItem.style.textDecoration = "line-through";  // Style completed tasks with strikethrough
+                taskItem.innerHTML = `
+                    <span class="task-title">${task.title} - ${task.description}</span>
+                `;
+                completedTaskListHtml.appendChild(taskItem);
+            });
+        } else {
+            taskListHtml.innerHTML = '<p>No tasks available for this user.</p>';
+        }
+    }
+
+    // Function to mark a task as completed and add 10 coins to the user
+    function completeTask(taskTitle) {
+        const appState = getAppState();
+        const currentUser = appState.currentUser.username;
+
+        if (currentUser && appState.users[currentUser]) {
+            const user = appState.users[currentUser];
+            const userTasks = user.tasks;
+            const completedTasks = user.completedTasks || [];
+
+            // Find the task to mark as completed
+            const taskIndex = userTasks.findIndex(task => task.title === taskTitle);
+            if (taskIndex !== -1) {
+                // Move the task to completedTasks
+                const completedTask = userTasks.splice(taskIndex, 1)[0];
+                completedTasks.push(completedTask);
+
+                // Add 10 coins to the user
+                const coins = user.coins || 0;
+                user.coins = coins + 10;
+
+                // Update the appState with the new task lists and coins
+                appState.users[currentUser].tasks = userTasks;
+                appState.users[currentUser].completedTasks = completedTasks;
+                appState.users[currentUser].coins = user.coins;
+                saveAppState(appState);
+
+                // Update the display
+                displayUserTasks();
+            }
+        }
+    }
+
+    // Load tasks and coins when the page is loaded
+    window.onload = displayUserTasks;
+</script>
+
+
+
         
 <!-- DELETE LATER and move to the second page -->
         <!-- <div class="column-main">
