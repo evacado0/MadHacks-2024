@@ -1,7 +1,8 @@
 class Task {
   
-    constructor(name, isMine, isPublic, coinValue) {
+    constructor(name, description, isMine, isPublic, coinValue) {
       this.name = name;
+      this.description = description;
       this.isMine = isMine;
       this.isComplete = false;
       this.isPublic = isPublic;
@@ -24,7 +25,9 @@ class Task {
     }
   
     toString() {
-      return this.name + ": " + coinValue;
+      return this.name + "\n" + coinValue;
     }
   }
+module.exports = Task;
+
   

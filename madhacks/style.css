@@ -1,0 +1,29 @@
+body{
+    margin:10px;
+}
+
+.column-profile{
+        float: left;
+        width: 30%;
+        padding: 10px;
+        background-color:antiquewhite;
+    }
+table, th, td {
+    border: 1px solid black;
+}
+
+#task-adder{
+    /* display: flex;
+    justify-content: center; */
+    margin: 10px;
+    border:1px solid black;
+}
+
+#vertical-rectangle{
+    position: fixed;
+    width: 20%;
+    height: 100vh;
+    background-color: #FF0000;
+    left: 0;
+    top: 0;
+}

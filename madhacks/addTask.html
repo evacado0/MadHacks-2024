@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="app.js"></script>
     
@@ -12,7 +12,7 @@
 <body>
     <h1>Interaction with Java Backend</h1>
     <a href="frontend.html">Go Back</a>
-    <div class="column-main">
+    <div class="column-main" id="task-adder">
         <h2>Tasks</h2>
 
         <input id="new-task-title" class="form-control" style="max-width: 10em;"/>
@@ -33,8 +33,7 @@
     </div>
     <div id = "task-list-container" class = "task-list-container">
 
-        <p id="tasks-public">
-        </p>
+        <p id="tasks-public"></p>
 
     </div>
 

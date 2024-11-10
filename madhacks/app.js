@@ -1,8 +1,15 @@
 let tasks = [];
+// let tasks = person.getTasks()
 function updateTasks() {
-    const taskPublicNodeNode = document.getElementById("tasks-public");
-    const tasksPublic = tasks.join("<br/>")
+    //alert("update called")
+    const taskPublicNode = document.getElementById("tasks-public");
+   // const tasksPublic = tasks.join("<br/>")
+   const tasksPublic = tasks.map(task => {
+    return `Title: ${task.title}<br/>Description: ${task.description}<br/>Category: ${task.category}<br/><br/>`;
+}).join("");
+    //alert("hi")
     taskPublicNode.innerHTML = tasksPublic;
+    //alert("update ran")
 }
 
 function addTask(){
@@ -24,9 +31,18 @@ function addTask(){
         return;
     }
     //add to list
-    tasks.push(taskTitle);
-    tasks.push(taskDescription);
-    tasks.push(taskCategory);
+    // tasks.push(taskTitle);
+    // tasks.push(taskDescription);
+    // tasks.push(taskCategory);
+
+    tasks.push({
+        title: taskTitle,
+        description: taskDescription,
+        category: taskCategory,
+        isCompleted: false
+    })
+    updateTasks();
+   // alert("pushed")
      // this is the table thing (public tasks)
     // document.getElementById("task-title").innerHTML = taskTitle;
     // document.getElementById("task-description").innerHTML = taskDescription;

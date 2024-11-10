@@ -1,3 +1,5 @@
+const Task = require('./task'); 
+
 class Profile {
     // variables
     constructor(user, pw, n = "Default Name") {
@@ -69,4 +71,4 @@ class Profile {
         return this.name
     }
 }
-
+module.exports = Profile; 
