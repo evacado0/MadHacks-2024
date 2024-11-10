@@ -12,42 +12,28 @@
 <body>
     <!--<div id="vertical-rectangle"></div>-->
     <h1 id="greeting"></h1>
+    <div id="sidebar">
+        <h1 class="out-sidebar" id="greeting"></h1>
+        <img src="feed1.jpg" alt="Profile Picture" id="profile-pic">
+    </div>
 
-    <script>
-        // Function to display a greeting with the current user's username
-        
-    function displayGreeting() {
-        const appState = getAppState();
-        const greetingElement = document.getElementById("greeting");
-        
-        // Check if current user is available in appState
-        if (appState.currentUser && appState.currentUser.username) {
-            greetingElement.textContent = `Hello ${appState.currentUser.username}`;
-        } else {
-            greetingElement.textContent = "Hello, Guest";  // Fallback in case username is unavailable
-        }
-    }
+      
 
-// Call displayGreeting function on page load
-displayGreeting();
 
-    </script>
     <div id="buttons-container">
         <button id="add-task" onclick="window.location.href='addTask.html'">Add Task</button>
         <button id="add-people" onclick="window.location.href='people.html'">Add People</button>
         <button id="sign-out" onclick="window.location.href='login.html'">Sign Out</button>
     </div> 
-
-   <a href="addTask.html">Add Task</a> 
-   <a href="addTask.html">Add Task</a> 
+ 
    <div id="task-info">
-        <p>Name</p>
-        <p>Badges</p>
+        <p id="username">Name</p>
+        <p id="badges">Badges</p>
     </div>
 
      <!-- Task List -->
 <div class="column-main">
-    <h2>Your Task List</h2>
+
 
     <!-- Dynamic Task List will be rendered here -->
     <ul id="task-list">
@@ -82,6 +68,26 @@ displayGreeting();
     function saveAppState(state) {
         localStorage.setItem("unnamed-app-data", JSON.stringify(state));
     }
+
+
+
+  // Function to display a greeting with the current user's username
+        
+  function displayGreeting() {
+        alert("displaygretoing")
+        const appState = getAppState();
+        const greetingElement = document.getElementById("greeting");
+        
+        // Check if current user is available in appState
+        if (appState.currentUser && appState.currentUser.username) {
+            greetingElement.textContent = `Hello ${appState.currentUser.username}`;
+        } else {
+            greetingElement.textContent = "Hello, Guest";  // Fallback in case username is unavailable
+        }
+    }
+
+// Call displayGreeting function on page load
+displayGreeting();
 
     // Function to display the user's tasks and coins
     function displayUserTasks() {
@@ -201,6 +207,51 @@ displayGreeting();
         </div> -->
 
 <!-- <p id="tasks-public"></p> -->
+
+<div class="grid-container">
+    <div class="grid-item">
+        <div class="image-container">
+            <img src="feed1.jpg" alt="Image 1">
+        </div>
+        <div class="description">
+            <p1>Name</p1>
+            <p>Description of the first item goes here.</p>
+        </div>
+    </div>
+
+    <div class="grid-item">
+        <div class="image-container">
+            <img src="feed2.jpg" alt="Image 2">
+        </div>
+        <div class="description">
+            <p1>Name</p1>
+            <p>Description of the second item goes here.</p>
+        </div>
+    </div>
+
+    <!-- Add more grid items to create multiple rows -->
+    <div class="grid-item">
+        <div class="image-container">
+            <img src="feed3.jpg" alt="Image 3">
+        </div>
+        <div class="description">
+            <p1>Name</p1>
+            <p>Description of the third item goes here.</p>
+        </div>
+    </div>
+
+    <div class="grid-item">
+        <div class="image-container">
+            <img src="image4.jpg" alt="Image 4">
+        </div>
+        <div class="description">
+            <p1>Name</p1>
+            <p>Description of the fourth item goes here.</p>
+        </div>
+    </div>
+
+    <!-- Continue adding more grid items for additional rows -->
+</div>
 
     <div class = "task-chart">  
         <table>

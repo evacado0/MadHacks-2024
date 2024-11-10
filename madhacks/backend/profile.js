@@ -70,5 +70,31 @@ class Profile {
     toString() {
         return this.name
     }
+
+     // Convert the profile to a JSON representation
+     toJSON() {
+        return {
+            username: this.username,
+            password: this.password,
+            name: this.name,
+            coins: this.coins,
+            friends: Array.from(this.friends.entries()),  // Convert Map to array
+            followers: Array.from(this.followers.entries()),  // Convert Map to array
+            tasks: this.tasks
+        };
+    }
+
+    // Create a Profile instance from JSON
+    static fromJSON(data) {
+        const profile = new Profile(data.username, data.password, data.name);
+        profile.coins = data.coins;
+        profile.tasks = data.tasks;
+        
+        // Rebuild the Map objects
+        profile.friends = new Map(data.friends);
+        profile.followers = new Map(data.followers);
+
+        return profile;
+    }
 }
 module.exports = Profile; 

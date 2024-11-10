@@ -17,7 +17,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            background-color: #333;
+            background-color: #D9D2B6;
             padding-top: 20px;
         }
 
@@ -25,14 +25,14 @@
             display: block;
             padding: 10px;
             text-decoration: none;
-            color: white;
+            color: #71697A;
             font-size: 18px;
             margin: 10px 0;
             border-radius: 4px;
         }
 
         #side-menu a:hover {
-            background-color: #575757;
+            background-color: #F2F6D0;
         }
 
         .content {
@@ -275,7 +275,7 @@ function approveHelpingOthersTask(friendUsername, taskDescription) {
                 task.approvedBy.push(appState.currentUser.username);
 
                 // Reward user for receiving an approval
-                friend.coins = (friend.coins || 0) + 5; // Add 5 coins as a reward
+                friend.coins = (parseInt(friend.coins) || 0) + 5;
     
 
                 // Save the updated app state
