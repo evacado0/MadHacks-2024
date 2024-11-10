@@ -27,8 +27,8 @@
     </div> 
  
    <div id="task-info">
-        <p id="username">Name</p>
-        <p id="badges">Badges</p>
+        <!-- <p id="username">Name</p>
+        <p id="badges">Badges</p> -->
     </div>
 
      <!-- Task List -->
@@ -74,7 +74,7 @@
   // Function to display a greeting with the current user's username
         
   function displayGreeting() {
-        alert("displaygretoing")
+        // alert("displaygretoing")
         const appState = getAppState();
         const greetingElement = document.getElementById("greeting");
         
@@ -154,12 +154,13 @@ displayGreeting();
                 completedTasks.push(completedTask);
 
                 // Add coins to the user
-                const coins = user.coins || 0;
+                let coins = parseInt(user.coins) || 0; // Ensure coins are treated as a number
                 let coinVal = 10;
-                if ( completedTask.category === 'Long-Term Goal' ){
-                   
+
+                if (completedTask.category === 'Long-Term Goal') {
                     coinVal = 20;
                 }
+
                 user.coins = coins + coinVal;
 
                 // Add 10 coins to the user
