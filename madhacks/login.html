@@ -80,7 +80,7 @@
         const appState = JSON.parse(localStorage.getItem("unnamed-app-data")) || { users: {} };
 
         if (appState.users[username] && appState.users[username].password === password) {
-            alert("Login successful!");
+            //alert("Login successful!");
             appState.currentUser = {
                 username: username,
                 sessionExpires: Date.now() + 60 * 60 * 1000 // 1 hour session
@@ -111,7 +111,9 @@
             users[username] = {
                 password: password,
                 tasks: [],
-                friends: []
+                friends: [],
+                followers: [], 
+                following: []
             };
 
             appState.currentUser = {

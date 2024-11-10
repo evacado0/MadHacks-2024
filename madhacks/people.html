@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MadHacks 2024</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+
+        #side-menu {
+            height: 100vh;
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding-top: 20px;
+        }
+
+        #side-menu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        #side-menu a:hover {
+            background-color: #575757;
+        }
+
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #task-list {
+            margin-top: 20px;
+        }
+
+        .task-item {
+            background-color: #f4f4f4;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        /* Search bar styling */
+        #search-bar {
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="side-menu">
+        <a href="javascript:void(0);" onclick="showFriendsTasks()">Friends</a>
+        <a href="javascript:void(0);" onclick="showFollowingTasks()">Following</a>
+    </div>
+
+    <div class="content">
+        <h1>Other People's Businesses</h1>
+        <a href="frontend.html">Go Back</a>
+
+        <!-- Search bar to search for users -->
+        <input type="text" id="search-bar" placeholder="Search for users..." oninput="searchUsers()">
+
+        <!-- Task list will be shown here -->
+        <div id="task-list"></div>
+    </div>
+
+    <script>
+        function getAppState() {
+            return JSON.parse(localStorage.getItem("unnamed-app-data")) || { users: {}, currentUser: {} };
+        }
+
+        // Function to search for users based on the input
+        function searchUsers() {
+            const searchQuery = document.getElementById('search-bar').value.toLowerCase();
+            const appState = getAppState();
+            const users = appState.users;
+            let searchResultsHtml = `<h2>Search Results</h2>`;
+
+            // Filter users based on search query
+            const searchResults = Object.keys(users).filter(username => {
+                return username.toLowerCase().includes(searchQuery);
+            });
+
+            if (searchResults.length > 0) {
+                searchResults.forEach(username => {
+                    const user = users[username];
+                    searchResultsHtml += `<h3>${username}</h3>`;
+                    
+                });
+            } else {
+                searchResultsHtml += `<p>No users found.</p>`;
+            }
+
+            document.getElementById('task-list').innerHTML = searchResultsHtml;
+        }
+
+        // Function to show tasks of friends
+        function showFriendsTasks() {
+            const appState = getAppState();
+            const currentUser = appState.currentUser.username;
+            let taskListHtml = `<h2>Friends' Tasks</h2>`;
+            
+            if (currentUser && appState.users[currentUser]) {
+                const friends = appState.users[currentUser].friends;
+                
+                if (friends && friends.length > 0) {
+                    friends.forEach(friendUsername => {
+                        const friend = appState.users[friendUsername];
+                        if (friend && friend.tasks && friend.tasks.length > 0) {
+                            taskListHtml += `<h3>${friendUsername}'s Tasks:</h3>`;
+                            taskListHtml += `<ul>`;
+                            friend.tasks.forEach(task => {
+                                taskListHtml += `<li class="task-item">${task}</li>`;
+                            });
+                            taskListHtml += `</ul>`;
+                        } else {
+                            taskListHtml += `<p>${friendUsername} has no tasks.</p>`;
+                        }
+                    });
+                } else {
+                    taskListHtml += `<p>You have no friends.</p>`;
+                }
+
+                document.getElementById('task-list').innerHTML = taskListHtml;
+            }
+        }
+
+        // Function to show tasks of following
+        function showFollowingTasks() {
+            const appState = getAppState();
+            const currentUser = appState.currentUser.username;
+            let taskListHtml = `<h2>Following' Tasks</h2>`;
+            
+            if (currentUser && appState.users[currentUser]) {
+                const following = appState.users[currentUser].following;
+                
+                if (following && following.length > 0) {
+                    following.forEach(followingUsername => {
+                        const followingUser = appState.users[followingUsername];
+                        if (followingUser && followingUser.tasks && followingUser.tasks.length > 0) {
+                            taskListHtml += `<h3>${followingUsername}'s Tasks:</h3>`;
+                            taskListHtml += `<ul>`;
+                            followingUser.tasks.forEach(task => {
+                                taskListHtml += `<li class="task-item">${task}</li>`;
+                            });
+                            taskListHtml += `</ul>`;
+                        } else {
+                            taskListHtml += `<p>${followingUsername} has no tasks.</p>`;
+                        }
+                    });
+                } else {
+                    taskListHtml += `<p>You are not following anyone.</p>`;
+                }
+
+                document.getElementById('task-list').innerHTML = taskListHtml;
+            }
+        }
+    </script>
+</body>
+</html>
