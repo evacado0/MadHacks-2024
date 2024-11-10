@@ -15,20 +15,20 @@
     <div class="column-main" id="task-adder">
         <h2>Tasks</h2>
 
-        <input id="new-task-title" class="form-control" style="max-width: 10em;"/>
-        <p id="title-error-text" style="color: red;"></p>
+        <input class="input-field" id="new-task-title" class="form-control" style="max-width: 20em;"/>
+        <p id="title-error-text" style="color: #71697A;"></p>
 
-        <input id="new-task-description" class="form-control" style="max-width: 10em;"/>
-        <p id="description-error-text" style="color: red;"></p>
+        <input class="input-field" id="new-task-description" class="form-control" style="max-width: 20em;"/>
+        <p id="description-error-text" style="color: #71697A;"></p>
 
-        <select id="new-task-category" class="form-select me-2" style="max-width: 12em;" aria-label="Task Category">
+        <select class="input-field" id="new-task-category" class="form-select me-2" style="max-width: 12em;" aria-label="Task Category">
             <option>Daily Task</option>
             <option>Long-Term Goal</option>
             <option>Helping Task</option>
         </select>
-        <p id="category-error-text" style="color: red;"></p>
+        <p id="category-error-text" style="color: #71697A;"></p>
 
-        <button id="add-btn" class="btn btn-secondary me-2" style="width: fit-content;" onclick="addTask()">Add Task</button>
+        <button class="button" onclick="addTask()">Add Task</button>
 
     </div>
     <div id = "task-list-container" class = "task-list-container">

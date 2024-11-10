@@ -5,7 +5,7 @@ function updateTasks() {
     const taskPublicNode = document.getElementById("tasks-public");
    // const tasksPublic = tasks.join("<br/>")
    const tasksPublic = tasks.map(task => {
-    return `Title: ${task.title}<br/>Description: ${task.description}<br/>Category: ${task.category}<br/><br/>`;
+    return `--------<br/>Title: ${task.title}<br/>Description: ${task.description}<br/>Category: ${task.category}<br/>--------<br/>`;
 }).join("");
     //alert("hi")
     taskPublicNode.innerHTML = tasksPublic;
@@ -42,6 +42,8 @@ function addTask(){
         isCompleted: false
     })
     updateTasks();
+
+    
    // alert("pushed")
      // this is the table thing (public tasks)
     // document.getElementById("task-title").innerHTML = taskTitle;

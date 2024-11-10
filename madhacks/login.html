@@ -95,38 +95,7 @@
     }
 
 
-    // // Signup function
-    // function createAccount() {
-    //     const username = document.getElementById('username').value;
-    //     const password = document.getElementById('password').value;
-
-    //     const appState = getAppState();
-    //     const users = appState.users;
-
-    //     // Check if the username is already taken
-    //     if (users[username]) {
-    //         alert("Username already taken.");
-    //     } else {
-    //         // Create new user and add to appState
-    //         users[username] = {
-    //             password: password,
-    //             tasks: [],
-    //             friends: []
-    //         };
-
-    //         appState.currentUser = {
-    //             username: username,
-    //             sessionExpires: Date.now() + 60 * 60 * 1000 // 1 hour session
-    //         };
-
-    //         saveAppState(appState);
-    //         alert("Account created successfully!");
-    //     }
-    // }
-
-
-
-    // Signup function (Create Account)
+    // Signup function
     function createAccount() {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
@@ -138,20 +107,22 @@
         if (users[username]) {
             alert("Username already taken.");
         } else {
-            // Create new Profile instance and add to appState
-            const newProfile = new Profile(username, password);
-            users[username] = newProfile;
+            // Create new user and add to appState
+            users[username] = {
+                password: password,
+                tasks: [],
+                friends: []
+            };
 
             appState.currentUser = {
                 username: username,
-                sessionExpires: Date.now() + 60 * 60 * 1000 // 1 hour session expiration
+                sessionExpires: Date.now() + 60 * 60 * 1000 // 1 hour session
             };
 
             saveAppState(appState);
             alert("Account created successfully!");
         }
     }
-
 
     // Task management function
     function addTask(taskDescription) {

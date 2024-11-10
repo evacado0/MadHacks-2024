@@ -1,5 +1,9 @@
 body{
-    margin:10px;
+
+    background-color: #018a21;
+}
+h1{
+    font-family: "Lato";
 }
 
 .column-profile{
@@ -9,14 +13,31 @@ body{
         background-color:antiquewhite;
     }
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid #71697A;
+}
+
+.input-field{
+    background-color: #F2F6D0;
+}
+.button{
+    border-radius: 8px;
+    padding:5px;
+    background-color: #D0E1D4;
 }
 
 #task-adder{
-    /* display: flex;
-    justify-content: center; */
-    margin: 10px;
-    border:1px solid black;
+    font-family: "Lato";
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 30%;
+    padding: 10px;
+    border:2px solid #71697A;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #D9D2B6;
 }
 
 #vertical-rectangle{
@@ -26,4 +47,8 @@ table, th, td {
     background-color: #FF0000;
     left: 0;
     top: 0;
+}
+
+#tasks-public{
+   
 }
