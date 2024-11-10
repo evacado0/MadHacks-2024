@@ -27,7 +27,7 @@ body, html {
 #user-coins {
     position: absolute;
     top: -290px;      /* Distance from the top */
-    left: 1150px;    /* Distance from the right */
+    left: 1050px;    /* Distance from the right */
     background-color: white; /* Optional: Add a background for better readability */
     padding: 5px;  /* Optional: Add some padding */
     border-radius: 5px; /* Optional: Rounded corners */
