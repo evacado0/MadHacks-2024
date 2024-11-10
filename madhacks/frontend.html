@@ -8,16 +8,21 @@
     <script src="app.js"></script>
     
     <title>MadHacks 2024</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
     <!--<div id="vertical-rectangle"></div>-->
     <h1 id="greeting"></h1>
     <div id="sidebar">
         <h1 class="out-sidebar" id="greeting"></h1>
-        <img src="feed1.jpg" alt="Profile Picture" id="profile-pic">
+        <!-- <img src="feed1.jpg" alt="Profile Picture" id="profile-pic"> -->
     </div>
 
-      
+    <div id="profile-picture">
+        <img src="feed1.jpg" alt="Profile Picture">
+    </div>  
+
 
 
     <div id="buttons-container">
@@ -40,7 +45,7 @@
         <!-- Tasks will be added dynamically using JavaScript -->
     </ul>
 
-    <h3>Completed Tasks</h3>
+    
     <ul id="completed-task-list">
         <!-- Completed Tasks will be added dynamically using JavaScript -->
     </ul>
@@ -218,6 +223,11 @@ displayGreeting();
             <p1>Name</p1>
             <p>Description of the first item goes here.</p>
         </div>
+        <div class="icon-container">
+            <i class="fa fa-heart" aria-hidden="true"></i>
+            <i class="fa fa-comment" aria-hidden="true"></i>
+            <i class="fa fa-share" aria-hidden="true"></i>
+        </div>
     </div>
 
     <div class="grid-item">
@@ -227,6 +237,11 @@ displayGreeting();
         <div class="description">
             <p1>Name</p1>
             <p>Description of the second item goes here.</p>
+        </div>
+        <div class="icon-container">
+            <i class="fa fa-heart" aria-hidden="true"></i>
+            <i class="fa fa-comment" aria-hidden="true"></i>
+            <i class="fa fa-share" aria-hidden="true"></i>
         </div>
     </div>
 
@@ -239,6 +254,11 @@ displayGreeting();
             <p1>Name</p1>
             <p>Description of the third item goes here.</p>
         </div>
+        <div class="icon-container">
+            <i class="fa fa-heart" aria-hidden="true"></i>
+            <i class="fa fa-comment" aria-hidden="true"></i>
+            <i class="fa fa-share" aria-hidden="true"></i>
+        </div>
     </div>
 
     <div class="grid-item">
@@ -249,12 +269,17 @@ displayGreeting();
             <p1>Name</p1>
             <p>Description of the fourth item goes here.</p>
         </div>
+        <div class="icon-container">
+            <i class="fa fa-heart" aria-hidden="true"></i>
+            <i class="fa fa-comment" aria-hidden="true"></i>
+            <i class="fa fa-share" aria-hidden="true"></i>
+        </div>
     </div>
 
     <!-- Continue adding more grid items for additional rows -->
 </div>
 
-    <div class = "task-chart">  
+    <!-- <div class = "task-chart">  
         <table>
             <tr>
                 <td id="task-title">Task Title</td>
@@ -263,6 +288,6 @@ displayGreeting();
                 <td id="task-description">Task Description</td>
             </tr>
         </table>
-    </div>
+    </div> -->
 </body>
 </html>
