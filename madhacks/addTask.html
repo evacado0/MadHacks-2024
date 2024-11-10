@@ -47,6 +47,34 @@
         }
     </style>
 
+    <div class="column-main" id="task-adder">
+        <h2>Tasks</h2>
+
+        <!-- Input fields for Task Title, Description, and Category -->
+        <input class="input-field form-control" id="new-task-title" placeholder="Task Title" style="max-width: 20em;">
+        <p id="title-error-text" style="color: #71697A;"></p>
+
+        <input class="input-field form-control" id="new-task-description" placeholder="Task Description" style="max-width: 20em;">
+        <p id="description-error-text" style="color: #71697A;"></p>
+
+        <select class="input-field form-select me-2" id="new-task-category" style="max-width: 12em;" aria-label="Task Category">
+            <option>Daily Task</option>
+            <option>Long-Term Goal</option>
+            <option>Helping Task</option>
+        </select>
+        <p id="category-error-text" style="color: #71697A;"></p>
+
+        <!-- Button to Add Task -->
+        <button class="button btn btn-secondary" onclick="addTask()">Add Task</button>
+    </div>
+
+    <!-- Task List Container -->
+    <div id="task-list-container" class="task-list-container mt-4">
+        <h3>Your Tasks</h3>
+        <ul id="tasks-public" class="list-group"></ul>
+    </div>
+
+
     <script>
         // Function to fetch app state from localStorage
         function getAppState() {

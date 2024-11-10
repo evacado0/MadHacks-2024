@@ -1,17 +1,77 @@
-body{
-
-    background-color: #018a21;
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
+
+#sidebar {
+    width: 20%; /* 1/5th of the full width */
+    height: 100vh; /* 100% of the viewport height */
+    position: fixed; /* Fixed position to stay in place on scroll */
+    left: 0;
+    top: 0;
+    background-color: #71697A; /* Dark background for the sidebar */
+    z-index: -1;
+}
+
+#profile-pic {
+    width: 80%;  /* Adjust the width as needed */
+    border-radius: 50%;  /* Makes the image round */
+    margin: 10% 10%;  /* Centers the image with equal top and side margins */
+    display: block;  /* Ensures it takes up the full line */
+}
+
+#user-coins {
+    position: absolute;
+    top: 10px;      /* Distance from the top */
+    right: 10px;    /* Distance from the right */
+    background-color: white; /* Optional: Add a background for better readability */
+    padding: 5px;  /* Optional: Add some padding */
+    border-radius: 5px; /* Optional: Rounded corners */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Optional: Shadow for better visibility */
+}
+
+#task-info {
+    position: absolute; /* or 'relative' if you prefer */
+    top: 150px;         /* Adjust as needed to move it down */
+    left: 20px;         /* Adjust as needed to move it to the right */
+    text-align: left;   /* Ensures the text inside aligns to the left */
+    padding: 10px;      /* Optional: Adds padding around the text */
+    
+}
+
+#main-content {
+    margin-left: 20%; /* Same as the sidebar width to prevent overlay */
+    padding: 20px; /* Padding around the content */
+    height: 100%; /* Optional: Might be adjusted based on actual content */
+}
+
+#mcolumn-main {
+    margin-left: 20%; /* Same as the sidebar width to prevent overlay */
+    padding: 20px; /* Padding around the content */
+    height: 100%; /* Optional: Might be adjusted based on actual content */
+}
+
+#flex-container{
+    font-family: "Lato";
+    position: absolute;
+    top: 10px;      /* Distance from the top */
+    right: 10px;
+}
+
 h1{
     font-family: "Lato";
+    position: absolute;
+    left: 200px;
 }
 
-.column-profile{
-        float: left;
-        width: 30%;
-        padding: 10px;
-        background-color:antiquewhite;
-    }
+h2{
+    font-family: "Lato";
+    position: absolute;
+    top: 300px;      /* Distance from the top */
+    left: 300px;
+}
+
 table, th, td {
     border: 1px solid #71697A;
 }
@@ -19,10 +79,43 @@ table, th, td {
 .input-field{
     background-color: #F2F6D0;
 }
-.button{
-    border-radius: 8px;
-    padding:5px;
-    background-color: #D0E1D4;
+
+#buttons-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 750px;
+    left: 50px;
+    display: flex;          /* Align buttons horizontally */
+    gap: 10px;               /* Space between buttons */
+}
+
+.task-chart {
+    position: absolute; /* Positions the container at a fixed location */
+    top: 350px;         /* Moves it 200 pixels from the top of the page */
+    left: 300px;         /* Moves it 50 pixels from the left of the page */
+    padding: 10px;      /* Optional: Adds padding around the table */
+}
+
+#content {
+    position: absolute;
+    text-align: left;
+    top: 20px;
+    left: 100px;
+}
+
+#add-task, #add-people {
+    background-color: #D0E1D4; /* Button color */
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#add-task:hover, #add-people:hover {
+    background-color: #748979; /* Darken color on hover */
 }
 
 #task-adder{

@@ -166,10 +166,7 @@
             }
         }
     }
-
-
-
-        // Function to save app state to localStorage
+       // Function to save app state to localStorage
         function saveAppState(state) {
             localStorage.setItem("unnamed-app-data", JSON.stringify(state));
         }
@@ -204,7 +201,7 @@
         }
 
         // Function to show tasks of friends (including completed tasks)
-function showFriendsTasks() {
+        function showFriendsTasks() {
     const appState = getAppState();
     const currentUser = appState.currentUser.username;
     let taskListHtml = `<h2>Friends' Tasks</h2>`;
@@ -215,19 +212,35 @@ function showFriendsTasks() {
         if (friends && friends.length > 0) {
             friends.forEach(friendUsername => {
                 const friend = appState.users[friendUsername];
-                if (friend && friend.tasks && friend.tasks.length > 0) {
-                    taskListHtml += `<h3>${friendUsername}'s Tasks:</h3>`;
-                    taskListHtml += `<h4>Active Tasks:</h4><ul>`;
-                    friend.tasks.forEach(task => {
-                        taskListHtml += `<li class="task-item">${task.description || task}</li>`;
-                    });
-                    taskListHtml += `</ul>`;
+                if (friend) {
+                    // Check if friend has active tasks
+                    if (friend.tasks && friend.tasks.length > 0) {
+                        taskListHtml += `<h3>${friendUsername}'s Tasks:</h3>`;
+                        taskListHtml += `<h4>Active Tasks:</h4><ul>`;
+                        
+                        friend.tasks.forEach(task => {
+                            taskListHtml += `<li class="task-item">${task.description || task}</li>`;
+                        });
+                        
+                        taskListHtml += `</ul>`;
+                    } else {
+                        taskListHtml += `<p>${friendUsername} has no active tasks.</p>`;
+                    }
 
-                    // Display completed tasks if available
+                    // Display completed tasks even if there are no active tasks
                     if (friend.completedTasks && friend.completedTasks.length > 0) {
                         taskListHtml += `<h4>Completed Tasks:</h4><ul>`;
                         friend.completedTasks.forEach(task => {
-                            taskListHtml += `<li class="task-item completed-task">${task.description || task}</li>`;
+                            taskListHtml += `<li class="task-item completed-task">${task.description || task}`;
+                            
+                            // Check if the task's category is "helping others" and add an "Approve" button if true
+                            if (task.category === "Helping Task" && !task.approvedBy?.includes(currentUser)) {
+                                taskListHtml += `
+                                    <button class="approve-btn" onclick="approveHelpingOthersTask('${friendUsername}', '${task.description}')">Approve</button>
+                                `;
+                            }
+
+                            taskListHtml += `</li>`;
                         });
                         taskListHtml += `</ul>`;
                     } else {
@@ -241,9 +254,44 @@ function showFriendsTasks() {
             taskListHtml += `<p>You have no friends.</p>`;
         }
 
+        // Update the DOM with the final HTML
         document.getElementById('task-list').innerHTML = taskListHtml;
     }
 }
+
+
+// Function to handle approval of a "helping others" task
+function approveHelpingOthersTask(friendUsername, taskDescription) {
+    const appState = getAppState();
+    const friend = appState.users[friendUsername];
+
+    if (friend) {
+        const task = friend.completedTasks.find(t => t.description === taskDescription);
+
+        if (task) {
+            // Ensure task has an "approvedBy" array to track who approved it
+            task.approvedBy = task.approvedBy || [];
+            if (!task.approvedBy.includes(appState.currentUser.username)) {
+                task.approvedBy.push(appState.currentUser.username);
+
+                // Reward user for receiving an approval
+                friend.coins = (friend.coins || 0) + 5; // Add 5 coins as a reward
+    
+
+                // Save the updated app state
+                saveAppState(appState);
+
+                alert(`You approved ${friendUsername}'s task: "${taskDescription}"`);
+
+                // Refresh the task list to reflect the approval
+                showFriendsTasks();
+            } else {
+                alert("You have already approved this task.");
+            }
+        }
+    }
+}
+
 
 // Function to show tasks of following (including completed tasks)
 function showFollowingTasks() {

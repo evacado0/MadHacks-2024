@@ -11,26 +11,39 @@
 </head>
 <body>
     <!--<div id="vertical-rectangle"></div>-->
-   <h1>Interaction with Java Backend</h1>
-    HELP CAN YOU SEE THIS
-    <a href="login.html">Go Back</a>
-    <button onclick="window.location.href='addTask.html'" style="padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #4CAF50; color: white; border: none; border-radius: 5px;">
-        Add Task
-    </button>
+    <h1 id="greeting"></h1>
 
-     <!-- Button to go to people.html -->
-     <button onclick="window.location.href='people.html'" style="padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #3498db; color: white; border: none; border-radius: 5px; margin-left: 10px;">
-        People
-    </button>
+    <script>
+        // Function to display a greeting with the current user's username
+        
+    function displayGreeting() {
+        const appState = getAppState();
+        const greetingElement = document.getElementById("greeting");
+        
+        // Check if current user is available in appState
+        if (appState.currentUser && appState.currentUser.username) {
+            greetingElement.textContent = `Hello ${appState.currentUser.username}`;
+        } else {
+            greetingElement.textContent = "Hello, Guest";  // Fallback in case username is unavailable
+        }
+    }
+
+// Call displayGreeting function on page load
+displayGreeting();
+
+    </script>
+    <div id="buttons-container">
+        <button id="add-task" onclick="window.location.href='addTask.html'">Add Task</button>
+        <button id="add-people" onclick="window.location.href='people.html'">Add People</button>
+        <button id="sign-out" onclick="window.location.href='login.html'">Sign Out</button>
+    </div> 
 
    <a href="addTask.html">Add Task</a> 
- <div class="flex-container">
-        <div class = "column-profile">
-            <h2>Name</h2>
-            <h2>Badges</h2>
-            <h2>Heatmap</h2>
-            
-        </div>
+   <a href="addTask.html">Add Task</a> 
+   <div id="task-info">
+        <p>Name</p>
+        <p>Badges</p>
+    </div>
 
      <!-- Task List -->
 <div class="column-main">
@@ -56,8 +69,14 @@
 <script>
     // Function to fetch app state from localStorage
     function getAppState() {
-        return JSON.parse(localStorage.getItem("unnamed-app-data")) || { users: {}, currentUser: {} };
-    }
+        const appState = JSON.parse(localStorage.getItem("unnamed-app-data")) || { users: {}, currentUser: {} };
+
+    return appState;
+        
+        
+  
+    }       
+    
 
     // Function to save app state to localStorage
     function saveAppState(state) {
@@ -128,9 +147,18 @@
                 const completedTask = userTasks.splice(taskIndex, 1)[0];
                 completedTasks.push(completedTask);
 
-                // Add 10 coins to the user
+                // Add coins to the user
                 const coins = user.coins || 0;
-                user.coins = coins + 10;
+                let coinVal = 10;
+                if ( completedTask.category === 'Long-Term Goal' ){
+                   
+                    coinVal = 20;
+                }
+                user.coins = coins + coinVal;
+
+                // Add 10 coins to the user
+                //const coins = parseInt(user.coins) || 0;
+                //user.coins = parseInt(coins) + completedTask[2];
 
                 // Update the appState with the new task lists and coins
                 appState.users[currentUser].tasks = userTasks;
@@ -174,8 +202,8 @@
 
 <!-- <p id="tasks-public"></p> -->
 
-
-      <table>
+    <div class = "task-chart">  
+        <table>
             <tr>
                 <td id="task-title">Task Title</td>
             </tr>
@@ -183,6 +211,6 @@
                 <td id="task-description">Task Description</td>
             </tr>
         </table>
-    </div>    
+    </div>
 </body>
 </html>
